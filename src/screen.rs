@@ -11,6 +11,7 @@ pub trait Render {
 impl Render for Screen {
     fn do_loop(&self, mut act: impl FnMut() -> bool) {
         loop {
+            println!("{}", termion::clear::All);
             let finished = act();
             if finished {
                 break;
