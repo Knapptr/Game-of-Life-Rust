@@ -14,9 +14,9 @@ impl Cell {
             match alive_neighbor_count {
                 // dies if less than 2 living neighbors
                 0..=1 => false,
-                // 3 + live neighbors dies
-                4.. => false,
-                _ => true,
+                // 2 + live neighbors dies
+                3 => true, // 3 -> stay alive
+                _ => false,
             }
         } else {
             if alive_neighbor_count == 3 {
