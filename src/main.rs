@@ -1,6 +1,7 @@
 mod grid;
-use grid::Grid;
 mod screen;
+use grid::Grid;
+
 use screen::{Render, Screen};
 
 fn main() {

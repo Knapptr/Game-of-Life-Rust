@@ -15,7 +15,7 @@ impl Cell {
                 // dies if less than 2 living neighbors
                 0..=1 => false,
                 // 3 + live neighbors dies
-                3.. => false,
+                4.. => false,
                 _ => true,
             }
         } else {
@@ -184,4 +184,31 @@ fn analyze_neighbors() {
     grid.contents[cell_coords].alive = false;
 
     assert_eq!(grid.cycle(1, 1), false);
+}
+
+#[test]
+fn nbor_count() {
+    // Live Cells
+    let live_cell = Cell::new(true);
+    assert_eq!(live_cell.analyze_neighbors(0), false);
+    assert_eq!(live_cell.analyze_neighbors(1), false);
+    assert_eq!(live_cell.analyze_neighbors(2), true);
+    assert_eq!(live_cell.analyze_neighbors(3), true);
+    assert_eq!(live_cell.analyze_neighbors(4), false);
+    assert_eq!(live_cell.analyze_neighbors(5), false);
+    assert_eq!(live_cell.analyze_neighbors(6), false);
+    assert_eq!(live_cell.analyze_neighbors(7), false);
+    assert_eq!(live_cell.analyze_neighbors(8), false);
+
+    // Dead Cells
+    let dead_cell = Cell::new(false);
+    assert_eq!(dead_cell.analyze_neighbors(0), false);
+    assert_eq!(dead_cell.analyze_neighbors(1), false);
+    assert_eq!(dead_cell.analyze_neighbors(2), false);
+    assert_eq!(dead_cell.analyze_neighbors(3), true);
+    assert_eq!(dead_cell.analyze_neighbors(4), false);
+    assert_eq!(dead_cell.analyze_neighbors(5), false);
+    assert_eq!(dead_cell.analyze_neighbors(6), false);
+    assert_eq!(dead_cell.analyze_neighbors(7), false);
+    assert_eq!(dead_cell.analyze_neighbors(8), false);
 }
